@@ -9,8 +9,9 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   TextEditingController c = TextEditingController();
-  int RESULT = 0;
+  int? RESULT;
   bool hello = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,10 +35,6 @@ class _HomeScreenState extends State<HomeScreen> {
                       setState(() {
                         hello = true;
                       });
-                    } else if (c.text == '0') {
-                      setState(() {
-                        hello = true;
-                      });
                     } else {
                       int a = int.parse(c.text);
                       int b = a * 3;
@@ -47,17 +44,19 @@ class _HomeScreenState extends State<HomeScreen> {
                       });
                     }
                   },
-                  child: Text("ຄູນດ້ວຍ 3"),
+                  child: const Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(Icons.close),
+                      Text("3"),
+                    ],
+                  ),
                 ),
               ),
               Expanded(
                 child: ElevatedButton(
                   onPressed: () {
                     if (c.text == '') {
-                      setState(() {
-                        hello = true;
-                      });
-                    } else if (c.text == '0') {
                       setState(() {
                         hello = true;
                       });
@@ -70,17 +69,19 @@ class _HomeScreenState extends State<HomeScreen> {
                       });
                     }
                   },
-                  child: Text("ຄູນດ້ວຍ 5"),
+                  child: const Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(Icons.close),
+                      Text("5"),
+                    ],
+                  ),
                 ),
               ),
               Expanded(
                 child: ElevatedButton(
                   onPressed: () {
                     if (c.text == '') {
-                      setState(() {
-                        hello = true;
-                      });
-                    } else if (c.text == '0') {
                       setState(() {
                         hello = true;
                       });
@@ -93,30 +94,13 @@ class _HomeScreenState extends State<HomeScreen> {
                       });
                     }
                   },
-                  child: Text("ຄູນດ້ວຍ 9"),
-                ),
-              ),
-              Expanded(
-                child: ElevatedButton(
-                  onPressed: () {
-                    if (c.text == '') {
-                      setState(() {
-                        hello = true;
-                      });
-                    } else if (c.text == '0') {
-                      setState(() {
-                        hello = true;
-                      });
-                    } else {
-                      int a = int.parse(c.text);
-                      int b = a * 11;
-                      setState(() {
-                        hello = false;
-                        RESULT = b;
-                      });
-                    }
-                  },
-                  child: Text("ຄູນດ້ວຍ 11"),
+                  child: const Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(Icons.close),
+                      Text("9"),
+                    ],
+                  ),
                 ),
               ),
             ],
@@ -125,14 +109,14 @@ class _HomeScreenState extends State<HomeScreen> {
             height: 10,
           ),
           hello == false
-              ? RESULT != 0
+              ? RESULT != null
                   ? Text('ຜົນຄູນເທົ່າກັບ $RESULT')
                   : Container(
                       width: 0,
                       height: 0,
                     )
               : Text(
-                  "ປ້ອນຂໍ້ມູນໃຫ້ຄົບ / ບໍ່ສາມາດປ້ອນເລກ 0",
+                  "ກະລຸນາປ້ອນຕົວເລກ",
                 ),
         ],
       ),
